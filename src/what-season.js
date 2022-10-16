@@ -12,9 +12,15 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
  function getSeason(date) {
+  if (typeof date === 'undefined') {
+  return 'Unable to determine the time of year!';
+} else if (!(date instanceof Date) || Object.getOwnPropertyNames(date).length) {
+    throw new Error("Invalid date!");
+  }
+
  
-  if(JSON.stringify(date) === '{}') throw new Error ('Invalid date!')
-  if((Object.getOwnPropertyNames(date)) === '[]') throw new Error ('Invalid date!')
+  // if(JSON.stringify(date) === '{}') {return 'Invalid date!'}
+  // if((Object.getOwnPropertyNames(date)) === '[]') {return 'Invalid date!'}
   if (Object.prototype.toString.call(date) !== '[object Date]') throw new Error ('Invalid date!')
 
   if (date instanceof Date) {
